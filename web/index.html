@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Scheme Eligibility Assistant</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/static/styles.css?v=1792675709">
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+<div id="scroll-progress" aria-hidden="true"></div>
+<header class="top">
+  <a class="brand" href="#top"><span class="logo">SE</span><div><strong>Scheme Eligibility Assistant</strong><small>Find government schemes you qualify for — and why</small></div></a>
+  <nav id="nav">
+    <a href="#check" data-tab="check">Check eligibility</a>
+    <a href="#ask" data-tab="ask">Ask</a>
+    <a href="#schemes" data-tab="schemes">Schemes</a>
+    <a href="#grievances" data-tab="grievances">Grievances</a>
+    <a href="#tracker" data-tab="tracker" class="hidden">My applications</a>
+    <a href="#account" data-tab="account" class="hidden">My account</a>
+  </nav>
+  <div id="user-area" class="user-area"></div>
+</header>
+
+<main id="top">
+  <section class="hero" id="home">
+    <div class="hero-inner">
+      <p class="eyebrow">Government schemes, explained</p>
+      <h1>Find out which schemes you qualify for — and exactly why.</h1>
+      <p class="lead">Answer a few questions. We check <b id="hero-count">570</b> central and state schemes and show the reason behind every result. Anything we can't confirm is marked “needs more info”, never wrongly rejected.</p>
+      <div class="row">
+        <a class="btn primary" href="#check">Check my eligibility</a>
+        <a class="btn ghost" href="#ask">Ask a question</a>
+      </div>
+      <ul class="hero-points">
+        <li><b>3 answers</b> Eligible · Not eligible · Needs more info</li>
+        <li><b>Every rule shown</b> with its source sentence</li>
+        <li><b>No guessing</b> answers cite official scheme text</li>
+      </ul>
+    </div>
+    <a class="scroll-hint" href="#check" aria-label="Scroll to the eligibility check">Scroll <span>↓</span></a>
+  </section>
+
+  <section id="check" class="sec reveal" data-section="check">
+    <div class="sec-head"><span class="num">01</span><div><h2>Check your eligibility</h2><p class="muted">Answer what you can. Unanswered questions become “needs more info”, never a rejection. Nothing is stored unless you log in and choose to save.</p></div></div>
+    <div class="check-stack">
+      <form id="profile-form" class="panel">
+        <div class="progress-wrap"><div class="progress-text"><span id="prog-label">0 of 18 answered</span><span class="muted">Optional — answer as many as you like</span></div><div class="progress"><div id="prog-bar"></div></div></div>
+        <div id="fields"></div>
+        <div class="row form-actions">
+          <button type="submit" class="primary">Check all schemes</button>
+          <button type="button" id="save-profile" class="ghost user-only hidden">Save profile</button>
+          <button type="button" id="clear-profile" class="ghost">Clear</button>
+        </div>
+      </form>
+      <div id="results-col">
+        <div id="next-q" class="callout hidden"></div>
+        <div id="results"><div class="empty">Fill in your profile and press <b>Check all schemes</b>. Results appear here.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ask" class="sec reveal" data-section="ask">
+    <div class="sec-head"><span class="num">02</span><div><h2>Ask about schemes</h2><p class="muted">Answers come only from official scheme text, with sources. Eligibility verdicts come from the rules engine using the profile you entered above.</p></div></div>
+    <div class="panel chat">
+      <div id="chat-log"></div>
+      <form id="chat-form" class="row">
+        <input id="chat-q" maxlength="500" placeholder="e.g. What documents are needed for Atal Pension Yojana?" autocomplete="off">
+        <button class="primary">Ask</button>
+      </form>
+      <div class="chips" id="examples"></div>
+    </div>
+  </section>
+
+  <section id="schemes" class="sec reveal" data-section="schemes">
+    <div class="sec-head"><span class="num">03</span><div><h2>Browse schemes</h2><p class="muted">Search the full list. Open a scheme to see its rules, source quotes and version history.</p></div></div>
+    <div class="panel">
+      <form id="scheme-filter" class="row wrap">
+        <input id="sf-q" placeholder="Search schemes (name, topic)…">
+        <select id="sf-level"><option value="">All levels</option><option value="central">Central</option><option value="state">State</option></select>
+        <select id="sf-state"><option value="">All states</option></select>
+        <select id="sf-status"><option value="">Any status</option><option value="published">Rules published</option><option value="in_review">In review</option></select>
+        <button class="primary">Search</button>
+      </form>
+      <div id="scheme-list"></div>
+      <div id="pager" class="row"></div>
+    </div>
+    <div id="scheme-detail" class="panel hidden"></div>
+  </section>
+
+  <section id="grievances" class="sec reveal" data-section="grievances">
+    <div class="sec-head"><span class="num">04</span><div><h2>Grievance Portal</h2><p class="muted">File, track and resolve complaints linked to your scheme applications and eligibility checks. Every update is kept in the grievance's timeline.</p></div></div>
+    <div id="grv-login" class="panel grv-login">
+      <p><b>Log in to file and track grievances.</b> Your grievances are private to you and the reviewing officer.</p>
+      <a class="btn primary" id="grv-login-link" href="/login">Log in or register</a>
+    </div>
+    <div id="grv-app" class="hidden">
+      <div class="grv-grid">
+        <form id="grv-form" class="panel">
+          <h3>File a grievance</h3>
+          <div class="fields">
+            <label class="span2">Scheme<input id="grv-scheme" list="scheme-names" placeholder="Start typing a scheme name…" autocomplete="off" required></label>
+            <label>Category<select id="grv-category" required>
+              <option value="application_status">Application status / delay</option>
+              <option value="eligibility_result">Disagree with eligibility result</option>
+              <option value="benefit_not_received">Benefit not received</option>
+              <option value="documents">Documents problem</option>
+              <option value="wrong_information">Wrong scheme information</option>
+              <option value="portal_issue">Portal / technical issue</option>
+              <option value="other">Other</option></select></label>
+            <label>Linked eligibility check (optional)<select id="grv-run"><option value="">— none —</option></select></label>
+            <label class="span2">Subject<input id="grv-subject" minlength="5" maxlength="120" required placeholder="Short summary of the problem"></label>
+            <label class="span2">Description<textarea id="grv-desc" minlength="20" maxlength="3000" required placeholder="What happened, when, and what you expected (at least 20 characters). Do not include Aadhaar or bank numbers."></textarea></label>
+          </div>
+          <datalist id="scheme-names"></datalist>
+          <div class="row form-actions"><button class="primary">Submit grievance</button></div>
+        </form>
+        <div class="panel">
+          <h3>My grievances</h3>
+          <div class="grv-counts" id="grv-counts"></div>
+          <div id="grv-list"><div class="muted">No grievances yet.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tracker" class="sec reveal hidden" data-section="tracker">
+    <div class="sec-head"><span class="num">05</span><div><h2>My applications</h2><p class="muted">Schemes you saved, your own application status, your document checklist and deadline reminders.</p></div></div>
+    <div class="callout own-record">ℹ️ <b>This is your own record.</b> The status you set here is what you note down for yourself. It is <b>not</b> the official government status of your application — always confirm that on the scheme's official portal.</div>
+    <div id="tr-reminders" class="callout reminder hidden"></div>
+    <div class="panel"><div class="grv-counts" id="tr-summary"></div><div id="tr-list" class="tr-list"></div></div>
+  </section>
+
+  <section id="account" class="sec reveal centered hidden" data-section="account">
+    <div class="sec-head"><span class="num">06</span><div><h2>My account</h2><p class="muted">Your saved profile and past checks. You can delete your data at any time.</p></div></div>
+    <div class="auth-center wide">
+      <div class="panel" id="me-panel">
+        <p id="me-info"></p>
+        <div class="row"><button id="delete-data" class="danger">Delete my profile &amp; history</button></div>
+        <h3>Past checks</h3>
+        <div id="history"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>Academic project on public data from myScheme (via Hugging Face <i>shrijayan/gov_myscheme</i>). Not an official service — always verify on <a href="https://www.myscheme.gov.in" target="_blank" rel="noopener">myscheme.gov.in</a>.</footer>
+<button id="to-top" class="to-top hidden" aria-label="Back to top">↑</button>
+<div id="toast" class="toast hidden"></div>
+<script src="/static/common.js?v=1792675709"></script>
+<script src="/static/app.js?v=1792675709"></script>
+</body>
+</html>

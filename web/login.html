@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login · Scheme Eligibility Assistant</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/static/styles.css?v=1792675709">
+</head>
+<body class="login-page">
+<header class="top">
+  <a class="brand" href="/"><span class="logo">SE</span><div><strong>Scheme Eligibility Assistant</strong><small>Find government schemes you qualify for — and why</small></div></a>
+  <nav><a href="/">← Back to site</a></nav>
+</header>
+
+<main class="login-wrap">
+  <div class="login-card panel">
+    <h1>Sign in</h1>
+    <p class="muted">Choose how you want to sign in.</p>
+    <div class="role-tabs" role="tablist">
+      <button type="button" role="tab" class="role-tab active" data-role="citizen" aria-selected="true"><span class="ic">👤</span>Citizen</button>
+      <button type="button" role="tab" class="role-tab" data-role="admin" aria-selected="false"><span class="ic">🛡</span>Admin</button>
+    </div>
+
+    <form id="login-form" class="fields one" novalidate>
+      <p class="role-note" id="role-note">Check eligibility, save your profile and file grievances.</p>
+      <div class="mode-switch" id="mode-switch">
+        <button type="button" class="mode active" data-mode="login">Login</button>
+        <button type="button" class="mode" data-mode="register">Create account</button>
+      </div>
+      <label id="name-row" class="hidden">Full name<input id="lg-name" maxlength="80" autocomplete="name"></label>
+      <label>Email<input id="lg-email" type="email" required autocomplete="email"></label>
+      <label>Password<input id="lg-pass" type="password" minlength="8" required autocomplete="current-password"></label>
+      <div class="row form-actions"><button class="primary" id="lg-submit">Login as citizen</button></div>
+      <p class="muted small-note" id="admin-note" hidden>Admin accounts are created by the system administrator. They cannot be registered here.</p>
+    </form>
+  </div>
+</main>
+<div id="toast" class="toast hidden"></div>
+<script src="/static/common.js?v=1792675709"></script>
+<script src="/static/login.js?v=1792675709"></script>
+</body>
+</html>

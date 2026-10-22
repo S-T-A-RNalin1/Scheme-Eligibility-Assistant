@@ -1,0 +1,36 @@
+{
+ "pdfs": 601,
+ "schemes": 570,
+ "central": 113,
+ "state": 457,
+ "states": 34,
+ "leaves": 922,
+ "valid": 501,
+ "curated": 16,
+ "top_attrs": [
+  [
+   "state",
+   457
+  ],
+  [
+   "age",
+   105
+  ],
+  [
+   "category",
+   89
+  ],
+  [
+   "annual_income",
+   76
+  ],
+  [
+   "is_citizen",
+   37
+  ],
+  [
+   "disability_percent",
+   33
+  ]
+ ]
+}

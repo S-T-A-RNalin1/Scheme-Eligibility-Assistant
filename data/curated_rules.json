@@ -1,0 +1,702 @@
+{
+ "_note": "Hand-reviewed rule trees. Every leaf's source_quote is copied from the scheme's myScheme text and is checked by the validator at publish time. Conditions that cannot be expressed with registered attributes are listed in unmapped_conditions and shown to the user.",
+ "schemes": {
+  "apy": {
+   "change_note": "Initial curated rules",
+   "eligibility": {
+    "op": "AND",
+    "children": [
+     {
+      "id": "r1",
+      "attribute": "age",
+      "operator": "between",
+      "value": [
+       18,
+       40
+      ],
+      "description": "Joining age 18 to 40 years",
+      "source_quote": "The minimum age of joining APY is 18 years and maximum is 40 years."
+     },
+     {
+      "op": "NOT",
+      "children": [
+       {
+        "id": "r2",
+        "attribute": "is_income_tax_payer",
+        "operator": "==",
+        "value": true,
+        "description": "Income-tax payers (current or past) are excluded",
+        "source_quote": "any citizen who is or has been an income tax payer, shall not be eligible to join APY"
+       }
+      ]
+     }
+    ]
+   },
+   "unmapped_conditions": [
+    "Contribution by auto-debit from a savings bank account"
+   ]
+  },
+  "ay": {
+   "change_note": "Initial curated rules (subsequent-intake age band)",
+   "eligibility": {
+    "op": "AND",
+    "children": [
+     {
+      "id": "r1",
+      "attribute": "is_citizen",
+      "operator": "==",
+      "value": true,
+      "description": "Must be an Indian citizen",
+      "source_quote": "The applicant must be a citizen of India."
+     },
+     {
+      "id": "r2",
+      "attribute": "age",
+      "operator": "between",
+      "value": [
+       17.5,
+       21
+      ],
+      "description": "Age 17.5 to 21 years (subsequent intakes)",
+      "source_quote": "For the subsequent intakes, the age of the applicant should be between 17.5 to 21 years."
+     }
+    ]
+   },
+   "unmapped_conditions": [
+    "Educational, physical and medical standards set by the Armed Forces"
+   ]
+  },
+  "cbssc-msy": {
+   "change_note": "Initial curated rules",
+   "eligibility": {
+    "op": "AND",
+    "children": [
+     {
+      "id": "r1",
+      "attribute": "gender",
+      "operator": "==",
+      "value": "female",
+      "description": "Women only",
+      "source_quote": "Applicable to Women belonging to economically and socially backward classes"
+     },
+     {
+      "id": "r2",
+      "attribute": "age",
+      "operator": "between",
+      "value": [
+       18,
+       55
+      ],
+      "description": "Age 18 to 55 years",
+      "source_quote": "Applicant must be between 18 to 55 years of age."
+     }
+    ]
+   },
+   "unmapped_conditions": [
+    "Must belong to economically and socially backward classes (target groups) as notified"
+   ]
+  },
+  "csspostmsossi": {
+   "change_note": "Initial curated rules (income corrected to ₹1.5 lakh after validator flagged the quote)",
+   "eligibility": {
+    "op": "AND",
+    "children": [
+     {
+      "id": "r1",
+      "attribute": "is_citizen",
+      "operator": "==",
+      "value": true,
+      "description": "Must be an Indian national",
+      "source_quote": "The applicant should be an Indian national."
+     },
+     {
+      "id": "r2",
+      "attribute": "category",
+      "operator": "in",
+      "value": [
+       "OBC"
+      ],
+      "description": "Must belong to OBC",
+      "source_quote": "The applicant should belong to OBCs, as notified by their State Govt./ UT Admn."
+     },
+     {
+      "id": "r3",
+      "attribute": "is_student",
+      "operator": "==",
+      "value": true,
+      "description": "Pursuing a post-matric course",
+      "source_quote": "The applicant should be pursuing post- matriculation or post-secondary courses in a recognized institution."
+     },
+     {
+      "id": "r4",
+      "attribute": "annual_income",
+      "operator": "<=",
+      "value": 150000,
+      "description": "Parents' income up to ₹1.5 lakh per year",
+      "source_quote": "parents/guardians' income from all sources does not exceed Rs. 1.50 lakh per annum"
+     }
+    ]
+   },
+   "unmapped_conditions": [
+    "Restricted to two boys of the same parents (not applicable to girls)"
+   ]
+  },
+  "csspremsobcsi": {
+   "change_note": "Initial curated rules",
+   "eligibility": {
+    "op": "AND",
+    "children": [
+     {
+      "id": "r1",
+      "attribute": "category",
+      "operator": "in",
+      "value": [
+       "OBC"
+      ],
+      "description": "OBC students (scheme for Other Backward Classes)",
+      "source_quote": null
+     },
+     {
+      "id": "r2",
+      "attribute": "is_student",
+      "operator": "==",
+      "value": true,
+      "description": "Must be a school student (pre-matric)",
+      "source_quote": null
+     },
+     {
+      "id": "r3",
+      "attribute": "annual_income",
+      "operator": "<=",
+      "value": 250000,
+      "description": "Parents' income up to ₹2,50,000 per year",
+      "source_quote": "parents/guardians' income from all sources does not exceed ₹ 2,50,000/- per annum"
+     }
+    ]
+   },
+   "unmapped_conditions": [
+    "At least 60% attendance in the previous year"
+   ]
+  },
+  "css-nos-st": {
+   "change_note": "Initial curated rules",
+   "eligibility": {
+    "op": "AND",
+    "children": [
+     {
+      "id": "r1",
+      "attribute": "category",
+      "operator": "in",
+      "value": [
+       "ST"
+      ],
+      "description": "Must be from a Scheduled Tribe",
+      "source_quote": "The applicant must be from a Scheduled Tribe (ST)."
+     },
+     {
+      "id": "r2",
+      "attribute": "annual_income",
+      "operator": "<=",
+      "value": 600000,
+      "description": "Family income up to ₹6,00,000 per year",
+      "source_quote": "should not be greater than ₹ 6,00,000/-"
+     },
+     {
+      "id": "r3",
+      "attribute": "marks_percent",
+      "operator": ">=",
+      "value": 55,
+      "description": "At least 55% in the qualifying exam",
+      "source_quote": "The applicant must have secured at least 55% marks"
+     },
+     {
+      "id": "r4",
+      "attribute": "education_level",
+      "operator": "in",
+      "value": [
+       "graduate",
+       "postgraduate",
+       "phd"
+      ],
+      "description": "Bachelor's or higher (for Master's / PhD / post-doc abroad)",
+      "source_quote": "In the case of a Master's Degree, the qualifying exam is a Bachelor's Degree"
+     },
+     {
+      "id": "r5",
+      "attribute": "age",
+      "operator": "<=",
+      "value": 38,
+      "description": "Age at most 38 (post-doc); 35 for PhD, 32 for Master's",
+      "source_quote": "should not be greater than 38 years"
+     }
+    ]
+   },
+   "unmapped_conditions": [
+    "Must be pursuing a PG course at a foreign university",
+    "Only one child per family"
+   ]
+  },
+  "csss-cus": {
+   "change_note": "Initial curated rules",
+   "eligibility": {
+    "op": "AND",
+    "children": [
+     {
+      "id": "r1",
+      "attribute": "is_student",
+      "operator": "==",
+      "value": true,
+      "description": "Pursuing a regular degree course",
+      "source_quote": "The applicant must be pursuing regular degree courses"
+     },
+     {
+      "id": "r2",
+      "attribute": "annual_income",
+      "operator": "<=",
+      "value": 450000,
+      "description": "Family income up to ₹4,50,000 per year",
+      "source_quote": "The gross parental/family income of the applicant should not exceed ₹4,50,000 per annum."
+     },
+     {
+      "id": "r3",
+      "attribute": "education_level",
+      "operator": "in",
+      "value": [
+       "class_12",
+       "diploma",
+       "graduate"
+      ],
+      "description": "Passed Class 12",
+      "source_quote": "in Class 12th of 10+2 pattern or equivalent"
+     }
+    ]
+   },
+   "unmapped_conditions": [
+    "Above 80th percentile in Class 12 board results",
+    "Not availing any other scholarship"
+   ]
+  },
+  "dacsspostmsebcs": {
+   "change_note": "Initial curated rules",
+   "eligibility": {
+    "op": "AND",
+    "children": [
+     {
+      "id": "r1",
+      "attribute": "is_citizen",
+      "operator": "==",
+      "value": true,
+      "description": "Indian national",
+      "source_quote": "The scholarships will be open to Indian nationals"
+     },
+     {
+      "id": "r2",
+      "attribute": "category",
+      "operator": "in",
+      "value": [
+       "General",
+       "EWS"
+      ],
+      "description": "General category (not SC / ST / OBC)",
+      "source_quote": "belonging to the General Category (Other than Schedule Caste, Schedule Tribe and Other Backward Classes)."
+     },
+     {
+      "id": "r3",
+      "attribute": "is_student",
+      "operator": "==",
+      "value": true,
+      "description": "Pursuing a post-matric course",
+      "source_quote": null
+     },
+     {
+      "id": "r4",
+      "attribute": "annual_income",
+      "operator": "<=",
+      "value": 100000,
+      "description": "Parents' income up to ₹1,00,000 per year",
+      "source_quote": "parents/guardians income from all sources does not exceed ₹ 1,00,000 per annum"
+     }
+    ]
+   },
+   "unmapped_conditions": [
+    "Course must be in a Government institution",
+    "Only two boys of the same parents"
+   ]
+  },
+  "ddugku": {
+   "change_note": "Initial curated rules (women / PwD upper age 45)",
+   "eligibility": {
+    "op": "AND",
+    "children": [
+     {
+      "id": "r1",
+      "attribute": "area_type",
+      "operator": "==",
+      "value": "rural",
+      "description": "Rural youth",
+      "source_quote": "The target group for DDU-GKY is poor rural youth in the age group 15-35."
+     },
+     {
+      "op": "OR",
+      "children": [
+       {
+        "id": "r2",
+        "attribute": "age",
+        "operator": "between",
+        "value": [
+         15,
+         35
+        ],
+        "description": "Age 15 to 35 years",
+        "source_quote": "poor rural youth in the age group 15-35"
+       },
+       {
+        "op": "AND",
+        "children": [
+         {
+          "op": "AND",
+          "children": [
+           {
+            "id": "r3",
+            "attribute": "age",
+            "operator": ">=",
+            "value": 15,
+            "description": "Age at least 15",
+            "source_quote": "poor rural youth in the age group 15-35"
+           },
+           {
+            "id": "r3b",
+            "attribute": "age",
+            "operator": "<=",
+            "value": 45,
+            "description": "Age up to 45 for women / PwD",
+            "source_quote": "shall be 45 years"
+           }
+          ]
+         },
+         {
+          "op": "OR",
+          "children": [
+           {
+            "id": "r4",
+            "attribute": "gender",
+            "operator": "in",
+            "value": [
+             "female",
+             "transgender"
+            ],
+            "description": "Women or transgender candidates",
+            "source_quote": "The upper age limit for women candidates"
+           },
+           {
+            "id": "r5",
+            "attribute": "has_disability",
+            "operator": "==",
+            "value": true,
+            "description": "Persons with Disabilities",
+            "source_quote": "Persons with Disabilities (PwDs)"
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "id": "r6",
+      "attribute": "is_bpl",
+      "operator": "==",
+      "value": true,
+      "description": "Poor household (BPL / Antyodaya / RSBY card)",
+      "source_quote": "Youth from households who have been issued Antyodaya Anna Yojana / BPL PDS cards."
+     }
+    ]
+   },
+   "unmapped_conditions": [
+    "Other poverty proofs accepted: RSBY card, MGNREGA work, SECC auto-inclusion"
+   ]
+  },
+  "cbssc-els": {
+   "change_note": "Initial curated rules",
+   "eligibility": {
+    "op": "AND",
+    "children": [
+     {
+      "id": "r1",
+      "attribute": "category",
+      "operator": "in",
+      "value": [
+       "SC"
+      ],
+      "description": "Scheduled Caste students",
+      "source_quote": "The scheme is for students of the Scheduled Caste Category."
+     },
+     {
+      "id": "r2",
+      "attribute": "is_student",
+      "operator": "==",
+      "value": true,
+      "description": "Must be a student",
+      "source_quote": "The scheme is for students of the Scheduled Caste Category."
+     }
+    ]
+   },
+   "unmapped_conditions": []
+  },
+  "cbssc-tl": {
+   "change_note": "Initial curated rules",
+   "eligibility": {
+    "op": "AND",
+    "children": [
+     {
+      "id": "r1",
+      "attribute": "category",
+      "operator": "in",
+      "value": [
+       "SC"
+      ],
+      "description": "Scheduled Caste entrepreneurs",
+      "source_quote": "The scheme is for entrepreneurs of the Scheduled Caste Category."
+     },
+     {
+      "id": "r2",
+      "attribute": "occupation",
+      "operator": "in",
+      "value": [
+       "entrepreneur",
+       "self_employed"
+      ],
+      "description": "Entrepreneur / self-employed",
+      "source_quote": "The scheme is for entrepreneurs of the Scheduled Caste Category."
+     }
+    ]
+   },
+   "unmapped_conditions": []
+  },
+  "aaby": {
+   "change_note": "Initial curated rules",
+   "eligibility": {
+    "op": "AND",
+    "children": [
+     {
+      "id": "r1",
+      "attribute": "state",
+      "operator": "==",
+      "value": "Assam",
+      "description": "Resident of Assam (state scheme)",
+      "source_quote": null
+     },
+     {
+      "id": "r2",
+      "attribute": "age",
+      "operator": "between",
+      "value": [
+       18,
+       59
+      ],
+      "description": "Age 18 to 59 years",
+      "source_quote": "The scheme is open to individuals between the ages of 18 and 59 years."
+     },
+     {
+      "id": "r3",
+      "attribute": "is_bpl",
+      "operator": "==",
+      "value": true,
+      "description": "Below-poverty-line household",
+      "source_quote": "The applicant should belong to a household below the poverty line"
+     },
+     {
+      "id": "r4",
+      "attribute": "annual_income",
+      "operator": "<=",
+      "value": 100000,
+      "description": "Annual income up to ₹1,00,000",
+      "source_quote": "with an annual income not exceeding Rs. 1,00,000"
+     },
+     {
+      "id": "r5",
+      "attribute": "occupation",
+      "operator": "in",
+      "value": [
+       "agricultural_labourer",
+       "artisan",
+       "fisherman",
+       "weaver",
+       "street_vendor",
+       "unorganised_worker"
+      ],
+      "description": "Rural/urban unorganised occupations listed in the scheme",
+      "source_quote": "landless agricultural labourers, rural artisans, fishermen, weavers, handicraft artisans"
+     }
+    ]
+   },
+   "unmapped_conditions": [
+    "Not covered under any other social security scheme"
+   ]
+  },
+  "ddsy": {
+   "change_note": "Initial curated rules",
+   "eligibility": {
+    "op": "AND",
+    "children": [
+     {
+      "id": "r1",
+      "attribute": "is_student",
+      "operator": "==",
+      "value": true,
+      "description": "Regular student of Class 6 to 9",
+      "source_quote": "The applicant should be a regular student of Class 6th-9th."
+     },
+     {
+      "id": "r2",
+      "attribute": "education_level",
+      "operator": "in",
+      "value": [
+       "below_class_10"
+      ],
+      "description": "Currently in Class 6 to 9",
+      "source_quote": null
+     },
+     {
+      "op": "OR",
+      "children": [
+       {
+        "id": "r3",
+        "attribute": "marks_percent",
+        "operator": ">=",
+        "value": 60,
+        "description": "At least 60% marks",
+        "source_quote": "The applicant should have scored at least 60% marks"
+       },
+       {
+        "op": "AND",
+        "children": [
+         {
+          "id": "r4",
+          "attribute": "category",
+          "operator": "in",
+          "value": [
+           "SC",
+           "ST"
+          ],
+          "description": "SC/ST get 5% relaxation",
+          "source_quote": "There will be a 5% relaxation for SC/ST."
+         },
+         {
+          "id": "r5",
+          "attribute": "marks_percent",
+          "operator": ">=",
+          "value": 55,
+          "description": "At least 55% marks with relaxation",
+          "source_quote": null
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "unmapped_conditions": [
+    "Must be a member of the school Philately Club or hold a Philately Deposit Account"
+   ]
+  },
+  "clssmig": {
+   "change_note": "Initial curated rules",
+   "eligibility": {
+    "op": "AND",
+    "children": [
+     {
+      "id": "r1",
+      "attribute": "annual_income",
+      "operator": "between",
+      "value": [
+       600001,
+       1800000
+      ],
+      "description": "Household income above ₹6 lakh and up to ₹18 lakh (MIG-I / MIG-II)",
+      "source_quote": null
+     }
+    ]
+   },
+   "unmapped_conditions": [
+    "Family must not own a pucca house anywhere in India",
+    "Not availed central assistance under any housing scheme"
+   ]
+  },
+  "cuy": {
+   "change_note": "Initial curated rules",
+   "eligibility": {
+    "op": "AND",
+    "children": [
+     {
+      "id": "r1",
+      "attribute": "age",
+      "operator": ">",
+      "value": 18,
+      "description": "Above 18 years of age",
+      "source_quote": "Any individual above 18 years of age with Indian Citizenship."
+     },
+     {
+      "id": "r2",
+      "attribute": "is_citizen",
+      "operator": "==",
+      "value": true,
+      "description": "Indian citizen",
+      "source_quote": "Any individual above 18 years of age with Indian Citizenship."
+     }
+    ]
+   },
+   "unmapped_conditions": [
+    "Project must be in the coir sector"
+   ]
+  },
+  "acandabc": {
+   "change_note": "Initial curated rules",
+   "eligibility": {
+    "op": "AND",
+    "children": [
+     {
+      "id": "r1",
+      "attribute": "age",
+      "operator": "between",
+      "value": [
+       18,
+       60
+      ],
+      "description": "Age 18 to 60 years",
+      "source_quote": "The age of the applicant must be between 18 and 60 years."
+     },
+     {
+      "id": "r2",
+      "attribute": "education_level",
+      "operator": "in",
+      "value": [
+       "diploma",
+       "graduate",
+       "postgraduate",
+       "phd"
+      ],
+      "description": "Agriculture graduate / diploma holder",
+      "source_quote": "Graduates in agriculture and allied subjects"
+     },
+     {
+      "op": "NOT",
+      "children": [
+       {
+        "id": "r3",
+        "attribute": "occupation",
+        "operator": "==",
+        "value": "retired",
+        "description": "Retired employees getting pension are not eligible for subsidy",
+        "source_quote": "Retired Employees Getting Pensionary Benefits Are Not Eligible For Subsidy."
+       }
+      ]
+     }
+    ]
+   },
+   "unmapped_conditions": [
+    "Degree/diploma must be in agriculture or allied subjects"
+   ]
+  }
+ }
+}

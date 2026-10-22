@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin dashboard · Scheme Eligibility Assistant</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/static/styles.css?v=1792675709">
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body class="admin-page">
+<div id="scroll-progress" aria-hidden="true"></div>
+<header class="top">
+  <a class="brand" href="/admin"><span class="logo">SE</span><div><strong>Admin dashboard</strong><small>Scheme Eligibility Assistant</small></div></a>
+  <nav id="nav">
+    <a href="#overview" data-tab="overview">Overview</a>
+    <a href="#coverage" data-tab="coverage">Coverage gaps</a>
+    <a href="#grievance-queue" data-tab="grievance-queue">Grievances</a>
+  </nav>
+  <div id="user-area" class="user-area"></div>
+</header>
+
+<main id="admin-main" class="hidden">
+  <section id="overview" class="sec" data-section="overview">
+    <div class="sec-head"><span class="num">01</span><div><h2>Overview</h2><p class="muted">Live numbers from aggregation pipelines over the MongoDB collections.</p></div></div>
+    <div class="panel"><div id="stats"></div></div>
+  </section>
+
+  <section id="coverage" class="sec" data-section="coverage">
+    <div class="sec-head"><span class="num">02</span><div><h2>Scheme coverage gap analytics</h2>
+      <p class="muted">Where are people searching for help that the scheme data doesn't cover? Supply is the schemes in our database; demand is what people search for in Ask and Browse.</p></div></div>
+    <div id="cov-note" class="callout hidden"></div>
+    <div class="kpis" id="cov-kpis"></div>
+    <!-- Two independent columns: each panel sits directly under the previous one, so no row-height gaps. -->
+    <div class="cov-cols">
+      <div class="cov-col">
+        <div class="panel"><h3>Coverage map <small class="muted">— circle size = searches, colour = gap index</small></h3>
+          <div id="cov-map"></div>
+          <div class="legend"><span class="lg lg-high"></span>High gap (≥ 2)<span class="lg lg-medium"></span>Medium (1–2)<span class="lg lg-low"></span>Low (&lt; 1)<span class="lg lg-none"></span>No searches</div>
+          <div id="cov-nearby" class="muted">Click a state on the map to compare it with nearby states ($geoNear).</div>
+        </div>
+        <div class="panel"><h3>Beneficiary groups <small class="muted">— searches per available scheme</small></h3><div id="cov-groups"></div></div>
+        <div class="panel"><h3>States by number of state schemes <small class="muted">($bucket)</small></h3><div id="cov-bands"></div></div>
+      </div>
+      <div class="cov-col">
+        <div class="panel"><h3>Regions with the biggest gaps</h3><div id="cov-regions"></div></div>
+        <div class="panel"><h3>Searches with few or no matching schemes</h3><div id="cov-unmet"></div></div>
+        <div class="panel"><h3>How many schemes each search found <small class="muted">($bucket)</small></h3><div id="cov-rbands"></div></div>
+      </div>
+    </div>
+    <div class="panel"><h3>Scheme availability by state and beneficiary group <small class="muted">— state-specific schemes; central schemes apply everywhere</small></h3><div id="cov-matrix"></div></div>
+  </section>
+
+  <section id="grievance-queue" class="sec" data-section="grievance-queue">
+    <div class="sec-head"><span class="num">03</span><div><h2>Grievance queue</h2><p class="muted">Complaints from citizens, newest activity first. Set the status and reply; the citizen sees it in their timeline.</p></div></div>
+    <div class="panel">
+      <div class="row wrap"><select id="gq-status"><option value="">All statuses</option><option value="open">Open</option><option value="in_progress">In progress</option><option value="resolved">Resolved</option><option value="closed">Closed</option></select></div>
+      <div id="gq-list"></div>
+    </div>
+  </section>
+
+</main>
+<button id="to-top" class="to-top hidden" aria-label="Back to top">↑</button>
+<div id="toast" class="toast hidden"></div>
+<script src="/static/common.js?v=1792675709"></script>
+<script src="/static/admin.js?v=1792675709"></script>
+</body>
+</html>

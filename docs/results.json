@@ -1,0 +1,142 @@
+{
+ "tests": {
+  "passed": 122,
+  "failed": 0,
+  "seconds": 16.7,
+  "pytest": "9.1.1",
+  "summary": "122 passed in 16.70s"
+ },
+ "fixture_accuracy": "100% (35/35)",
+ "check_ms": "9.8 ms",
+ "published": 17,
+ "bench": [
+  {
+   "query": "Check pre-filter: published, central or Assam",
+   "collection": "schemes",
+   "with_index": {
+    "docs_examined": 17,
+    "keys_examined": 17,
+    "returned": 16,
+    "ms": 0,
+    "stage": "FETCH \u2190 IXSCAN"
+   },
+   "no_index": {
+    "docs_examined": 570,
+    "keys_examined": 0,
+    "returned": 16,
+    "ms": 1,
+    "stage": "COLLSCAN"
+   }
+  },
+  {
+   "query": "User history, newest first",
+   "collection": "evaluations",
+   "with_index": {
+    "docs_examined": 135,
+    "keys_examined": 135,
+    "returned": 135,
+    "ms": 0,
+    "stage": "FETCH \u2190 IXSCAN"
+   },
+   "no_index": {
+    "docs_examined": 6506,
+    "keys_examined": 0,
+    "returned": 135,
+    "ms": 7,
+    "stage": "SORT \u2190 COLLSCAN"
+   }
+  },
+  {
+   "query": "All verdicts of one run",
+   "collection": "evaluations",
+   "with_index": {
+    "docs_examined": 15,
+    "keys_examined": 15,
+    "returned": 15,
+    "ms": 0,
+    "stage": "FETCH \u2190 IXSCAN"
+   },
+   "no_index": {
+    "docs_examined": 6506,
+    "keys_examined": 0,
+    "returned": 15,
+    "ms": 3,
+    "stage": "COLLSCAN"
+   }
+  },
+  {
+   "query": "Audits of one scheme version",
+   "collection": "evaluations",
+   "with_index": {
+    "docs_examined": 431,
+    "keys_examined": 431,
+    "returned": 431,
+    "ms": 1,
+    "stage": "FETCH \u2190 IXSCAN"
+   },
+   "no_index": {
+    "docs_examined": 6506,
+    "keys_examined": 0,
+    "returned": 431,
+    "ms": 3,
+    "stage": "COLLSCAN"
+   }
+  },
+  {
+   "query": "Chunks of one scheme",
+   "collection": "document_chunks",
+   "with_index": {
+    "docs_examined": 9,
+    "keys_examined": 9,
+    "returned": 9,
+    "ms": 0,
+    "stage": "FETCH \u2190 IXSCAN"
+   },
+   "no_index": {
+    "docs_examined": 3991,
+    "keys_examined": 0,
+    "returned": 9,
+    "ms": 3,
+    "stage": "COLLSCAN"
+   }
+  }
+ ],
+ "evaluations": 6506,
+ "chunks": 3991,
+ "rag_eval": {
+  "n": 200,
+  "named": 100,
+  "descriptive": 100,
+  "configs": {
+   "vector \u00b7 named": {
+    "recall@5": 0.98,
+    "mrr": 0.8983333333333334
+   },
+   "vector \u00b7 descriptive": {
+    "recall@5": 0.82,
+    "mrr": 0.6693333333333336
+   },
+   "keyword \u00b7 named": {
+    "recall@5": 1.0,
+    "mrr": 0.995
+   },
+   "keyword \u00b7 descriptive": {
+    "recall@5": 0.15,
+    "mrr": 0.11166666666666666
+   },
+   "hybrid \u00b7 named": {
+    "recall@5": 1.0,
+    "mrr": 0.9833333333333334
+   },
+   "hybrid \u00b7 descriptive": {
+    "recall@5": 0.68,
+    "mrr": 0.4998333333333334
+   }
+  },
+  "refusal": "9/10",
+  "headline": {
+   "recall@5": 1.0,
+   "mrr": 0.9833333333333334
+  }
+ }
+}

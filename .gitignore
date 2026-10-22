@@ -1,0 +1,15 @@
+.mongo-data/
+data/raw_pdfs/
+data/embedder.pkl
+.env*
+!.env.example
+__pycache__/
+.pytest_cache/
+.hypothesis/
+.server.log
+docs/node_modules/
+docs/*preview*.pdf
+docs/deck_grid.png
+
+# leftover partial copy from moving the project folder
+scheme-assistant/

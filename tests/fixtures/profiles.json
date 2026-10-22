@@ -1,0 +1,58 @@
+{
+  "_note": "Fixture profiles -> expected verdict for curated schemes. A rule change that flips one fails the build.",
+  "apy": [
+    {"profile": {"age": 30, "is_income_tax_payer": false}, "expected": "ELIGIBLE"},
+    {"profile": {"age": 45, "is_income_tax_payer": false}, "expected": "INELIGIBLE"},
+    {"profile": {"age": 30, "is_income_tax_payer": true}, "expected": "INELIGIBLE"},
+    {"profile": {"age": 30}, "expected": "NEEDS_MORE_INFO"},
+    {"profile": {"age": 17}, "expected": "INELIGIBLE"}
+  ],
+  "ay": [
+    {"profile": {"age": 19, "is_citizen": true}, "expected": "ELIGIBLE"},
+    {"profile": {"age": 22, "is_citizen": true}, "expected": "INELIGIBLE"},
+    {"profile": {"age": 19}, "expected": "NEEDS_MORE_INFO"}
+  ],
+  "cbssc-msy": [
+    {"profile": {"gender": "female", "age": 30}, "expected": "ELIGIBLE"},
+    {"profile": {"gender": "male", "age": 30}, "expected": "INELIGIBLE"},
+    {"profile": {"gender": "female", "age": 60}, "expected": "INELIGIBLE"}
+  ],
+  "csspostmsossi": [
+    {"profile": {"is_citizen": true, "category": "OBC", "is_student": true, "annual_income": 120000}, "expected": "ELIGIBLE"},
+    {"profile": {"is_citizen": true, "category": "OBC", "is_student": true, "annual_income": 200000}, "expected": "INELIGIBLE"},
+    {"profile": {"is_citizen": true, "category": "SC", "is_student": true, "annual_income": 100000}, "expected": "INELIGIBLE"},
+    {"profile": {"category": "OBC", "is_student": true}, "expected": "NEEDS_MORE_INFO"}
+  ],
+  "css-nos-st": [
+    {"profile": {"category": "ST", "annual_income": 500000, "marks_percent": 70, "education_level": "graduate", "age": 25}, "expected": "ELIGIBLE"},
+    {"profile": {"category": "ST", "annual_income": 700000, "marks_percent": 70, "education_level": "graduate", "age": 25}, "expected": "INELIGIBLE"},
+    {"profile": {"category": "ST", "annual_income": 500000, "marks_percent": 50, "education_level": "graduate", "age": 25}, "expected": "INELIGIBLE"}
+  ],
+  "ddugku": [
+    {"profile": {"area_type": "rural", "age": 25, "is_bpl": true}, "expected": "ELIGIBLE"},
+    {"profile": {"area_type": "rural", "age": 40, "gender": "female", "is_bpl": true}, "expected": "ELIGIBLE"},
+    {"profile": {"area_type": "rural", "age": 40, "gender": "male", "has_disability": false, "is_bpl": true}, "expected": "INELIGIBLE"},
+    {"profile": {"area_type": "urban", "age": 25, "is_bpl": true}, "expected": "INELIGIBLE"},
+    {"profile": {"area_type": "rural", "age": 40, "is_bpl": true}, "expected": "NEEDS_MORE_INFO"}
+  ],
+  "aaby": [
+    {"profile": {"state": "Assam", "age": 30, "is_bpl": true, "annual_income": 80000, "occupation": "weaver"}, "expected": "ELIGIBLE"},
+    {"profile": {"state": "Assam", "age": 30, "is_bpl": true, "annual_income": 150000, "occupation": "weaver"}, "expected": "INELIGIBLE"},
+    {"profile": {"state": "Kerala", "age": 30, "is_bpl": true, "annual_income": 80000, "occupation": "weaver"}, "expected": "INELIGIBLE"}
+  ],
+  "ddsy": [
+    {"profile": {"is_student": true, "education_level": "below_class_10", "marks_percent": 65}, "expected": "ELIGIBLE"},
+    {"profile": {"is_student": true, "education_level": "below_class_10", "marks_percent": 57, "category": "SC"}, "expected": "ELIGIBLE"},
+    {"profile": {"is_student": true, "education_level": "below_class_10", "marks_percent": 57, "category": "General"}, "expected": "INELIGIBLE"}
+  ],
+  "clssmig": [
+    {"profile": {"annual_income": 900000}, "expected": "ELIGIBLE"},
+    {"profile": {"annual_income": 500000}, "expected": "INELIGIBLE"},
+    {"profile": {"annual_income": 2000000}, "expected": "INELIGIBLE"}
+  ],
+  "acandabc": [
+    {"profile": {"age": 30, "education_level": "graduate", "occupation": "unemployed"}, "expected": "ELIGIBLE"},
+    {"profile": {"age": 30, "education_level": "graduate", "occupation": "retired"}, "expected": "INELIGIBLE"},
+    {"profile": {"age": 30, "education_level": "class_12", "occupation": "farmer"}, "expected": "INELIGIBLE"}
+  ]
+}
